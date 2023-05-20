@@ -28,11 +28,14 @@ class ConvoOutputParser(AgentOutputParser):
                     "Failed to parse values from the LLM output: ", cleaned_output
                 )
 
-            action = action_match.group(1)
-            action_input = action_input_match.group(1)
+                action = action_match.group(1)
+                action_input = action_input_match.group(1)
 
-            parsed = {"action": action, "action_input": action_input}
-            parsed_output = json.dumps(parsed)
+                parsed = {"action": action, "action_input": action_input}
+                parsed_output = json.dumps(parsed)
+            else:
+                parsed = {"action": "Final Answer", "action_input": cleaned_output}
+                parsed_output = json.dumps(parsed)
 
         except Exception as e:
             print("Failed to parse LLM output: ", cleaned_output)
