@@ -6,7 +6,7 @@ from typing import Union
 from langchain.agents import AgentOutputParser
 from langchain.agents.conversational_chat.prompt import FORMAT_INSTRUCTIONS
 from langchain.schema import AgentAction, AgentFinish, OutputParserException
-
+import re
 
 class ConvoOutputParser(AgentOutputParser):
     def get_format_instructions(self) -> str:
