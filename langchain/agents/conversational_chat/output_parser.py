@@ -34,8 +34,7 @@ class ConvoOutputParser(AgentOutputParser):
                 parsed = {"action": action, "action_input": action_input}
                 parsed_output = json.dumps(parsed)
             else:
-                parsed = {"action": "Final Answer", "action_input": cleaned_output}
-                parsed_output = json.dumps(parsed)
+                return AgentFinish({"output": cleaned_output}, text)
 
         except Exception as e:
             print("Failed to parse LLM output: ", cleaned_output)
