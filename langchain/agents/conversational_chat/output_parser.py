@@ -15,6 +15,7 @@ class ConvoOutputParser(AgentOutputParser):
     def parse(self, text: str) -> Union[AgentAction, AgentFinish]:
         cleaned_output = text.strip()
 
+        print(cleaned_output)
         action_pattern = r'"action":\s*"([^"]*)"'
         action_input_pattern = r'"action_input":\s*"([^"]*)"'
 
@@ -33,7 +34,7 @@ class ConvoOutputParser(AgentOutputParser):
             parsed = {"action": action, "action_input": action_input}
             parsed_output = json.dumps(parsed)
 
-        except AttributeError:
+        except Exception as e:
             print("Failed to parse LLM output: ", cleaned_output)
 
         response = json.loads(parsed_output)
